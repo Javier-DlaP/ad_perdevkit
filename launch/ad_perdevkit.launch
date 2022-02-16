@@ -1,0 +1,43 @@
+<launch>
+
+    <!-- Perception evaluation -->
+    
+    <arg name="perception_groundtruth_path_node" value="/ad_devkit/generate_perception_groundtruth_node"/> 
+
+    <group ns="$(arg perception_groundtruth_path_node)">
+        <param name="node_name" type="string" value="ad_devkit_eval_perception_node"/>
+        <param name="camera_info" type="string" value="/carla/ego_vehicle/camera/rgb/front/camera_info"/>
+        <param name="vehicle_info" type="string" value="/carla/ego_vehicle/vehicle_info"/>
+        <param name="objects" type="string" value="/carla/objects"/>
+        <param name="groundtruth" type="string" value="$(arg perception_groundtruth_path_node)/perception_groundtruth"/>
+
+        <param name="camera" type="string" value="/carla/ego_vehicle/camera/rgb/front/image_color"/>
+        <param name="lidar" type="string" value="/carla/ego_vehicle/lidar/lidar1/point_cloud"/>
+        <param name="radar" type="string" value="/carla/ego_vehicle/radar/front/radar_points"/>
+
+        <param name="csv_path" type="string" value="/home/robesafe/t4ac_ws/src/t4ac_carla_simulator/ad_devkit/databases/perception/groundtruth.csv"/>
+        <param name="camera_folder" type="string" value="/home/robesafe/t4ac_ws/src/t4ac_carla_simulator/ad_devkit/databases/perception/camera"/>
+        <param name="lidar_folder" type="string" value="/home/robesafe/t4ac_ws/src/t4ac_carla_simulator/ad_devkit/databases/perception/lidar"/>
+        <param name="radar_folder" type="string" value="/home/robesafe/t4ac_ws/src/t4ac_carla_simulator/ad_devkit/databases/perception/radar"/>
+
+        <param name="x_camera" type="double" value="0.41"/>
+        <param name="y_camera" type="double" value="0"/>
+        <param name="z_camera" type="double" value="1.64"/>
+
+        <param name="x_lidar" type="double" value="0"/>
+        <param name="y_lidar" type="double" value="0"/>
+        <param name="z_lidar" type="double" value="1.95"/>
+        <param name="max_distance_lidar" type="int" value="120"/>
+
+        <param name="x_radar" type="double" value="2"/>
+        <param name="y_radar" type="double" value="0"/>
+        <param name="z_radar" type="double" value="0.65"/>
+    </group>
+    <node pkg="ad_perdevkit" type="t4ac_abcogt_ros_node.py" name="generate_perception_groundtruth_path_node" output="screen"/> 
+
+    <!-- Rosbag  -->
+
+    <node pkg="rosbag" type="play" name="player" output="screen" args="--clock /home/robesafe/shared_home/rosbags_iv/1_town03_dia.bag --rate=0.2" required="true"/>
+    <param name="/use_sim_time" value="true"/>
+    
+</launch>

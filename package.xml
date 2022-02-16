@@ -1,0 +1,23 @@
+<package>
+
+  <name>ad_perdevkit</name>
+  <version>0.0.0</version>
+  <description>The ad_perdevkit package</description>
+  <maintainer email="robesafe@todo.todo">robesafe</maintainer>
+  <license>TODO</license>
+
+  <buildtool_depend>catkin</buildtool_depend>
+
+  <build_depend>message_generation</build_depend>
+  <run_depend>message_runtime</run_depend>
+
+  <build_depend>std_msgs</build_depend>
+  <run_depend>std_msgs</run_depend>
+  <build_depend>geometry_msgs</build_depend>
+  <run_depend>geometry_msgs</run_depend>
+  <build_depend>vision_msgs</build_depend>
+  <run_depend>vision_msgs</run_depend>
+  <build_depend>rospy</build_depend>
+  <run_depend>rospy</run_depend>
+
+</package>
